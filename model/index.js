@@ -3,26 +3,26 @@ var hashtable = new HashTable();
 
 
 exports.getShortenedURL = function(url){
+  // The next key can be the size of the hashtable, since we know that
+  // that number will not have been entered as a key.
   var sz = hashtable.size();
   hashtable.put(sz, url);
-  console.log("Getting result of ", sz, ": ", hashtable.get(sz));
-
   return  sz;
 
 }
 
 exports.getExpandedURL = function(idnum, cb){
-  // var sz = hashtable.size();
-  // hashtable.put(sz, url);
-  var url = 'http://localhost:3000';
-  console.log('IDNUMBER: ', idnum);
+
+  // Assign home as the init location
+  var url = '#'; //'http://localhost:3000';
   if (hashtable.has(idnum)){
     url = hashtable.get(idnum);
     if (url.slice(0,3) != 'http'){
       url = 'http://'+url;
     }
-    console.log('URL: ', url);
     cb(null, url);
   }
-  // cb(null, url);
+
+  cb('ERROR', url);
+
 }
