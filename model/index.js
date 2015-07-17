@@ -17,7 +17,7 @@ exports.getExpandedURL = function(idnum, cb){
   var url = '#'; //'http://localhost:3000';
   if (hashtable.has(idnum)){
     url = hashtable.get(idnum);
-    if (url.slice(0,3) != 'http'){
+    if (url.slice(0,4) != 'http'){
       url = 'http://'+url;
     }
     cb(null, url);
